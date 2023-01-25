@@ -10,6 +10,7 @@ export { Page };
 function Page() {
 
   const [pending, setPending] = useState(false);
+  let [count, setCount] = useState(0);
 
   let centerItem;
   if (pending) {
@@ -26,20 +27,88 @@ function Page() {
     centerItem =
       <button onClick={() => {
         setPending(true);
-        setTimeout(() => setPending(false), 300);
-      }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold font-large py-16 px-16 rounded-3xl">
+
+        let top = 500;
+        let bottom = 200;
+        let randomMs = Math.round(Math.random() * (top - bottom) + bottom);
+        setTimeout(() => {
+          setPending(false);
+          setCount(count + 1);
+        }, randomMs);
+      }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold font-large w-38 h-38 rounded-3xl">
         GO
       </button>;
   }
 
 
   return (
-    <div className="bg-white dark:bg-gray-800 dark:text-white overflow-y-auto">
+    <div className="bg-white dark:bg-gray-800 dark:text-white min-h-screen overflow-y-auto">
+
+      <div className="h-6"></div>
       <Nav />
 
-      <div className="flex flex-col items-center justify-center min-h-screen py-2">
-        {centerItem}
+      <div className="flex flex-col items-center py-2 h-300 space-y-10">
+
+        {/* How fast is nano? */}
+        <div className="flex flex-col items-center justify-center py-2 text-center">
+          <div className="text-6xl font-bold">
+            Just how <i>fast</i> is a nano transaction?
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center justify-center py-2">
+          {centerItem}
+        </div>
+
+        {
+          (count > 0 && !pending) && <div className="flex flex-col items-center justify-center py-2">
+            <div className="text-6xl font-bold">
+              That fast!
+            </div>
+            {/* <div className="text-2xl font-bold">
+              in addition:
+            </div>
+            <ul className="list-disc list-inside bg-green-500 px-3 py-3 rounded-lg">
+              <li>It's green!</li>
+              <li>0 fees!</li>
+              <li>It's secure!</li>
+            </ul> */}
+            {/* <div className="bg-green-500 p-4 mt-8">
+              <h2 className="text-2xl font-medium">In addition:</h2>
+              <ul className="list-none">
+                <li className="text-lg mb-2">No Fees. Ever.</li>
+                <li className="text-base mb-2 ml-4">Send $.01 or $1,000,000 worldwide without paying a cent in transaction fees. Keep every cent you earn.</li>
+                <li className="text-lg mb-2">It's green</li>
+                <li className="text-base mb-2 ml-4">There is no "mining". One transaction takes only ~0.001kWh. That's the equivalent of 1/13,000 the energy it takes to toast a slice of bread. Other currencies consume thousands of times more energy.</li>
+                <li className="text-lg mb-2">It'll get even better</li>
+                <li className="text-base mb-2 ml-4">The protocol is incredibly lightweight and scales with hardware, it only gets faster with time.</li>
+                <li className="text-lg mb-2">It's final.</li>
+                <li className="text-base mb-2  ml-4">Payments are finalized in seconds with no rollbacks, giving you financial confidence.</li>
+              </ul>
+            </div> */}
+          </div>
+        }
+
+        {(pending) && <div className="h-25"></div>}
+
+        {(count > 0) &&
+          <div className="bg-green-500 p-4 mt-8">
+            <h2 className="text-4xl font-medium mb-4">In addition:</h2>
+            <ul className="list-none space-y-3">
+              <li className="text-lg font-medium">No Fees. Ever.</li>
+              <li className="ml-6">Send $0.01 or $1,000,000 worldwide without paying a cent in transaction fees. Keep every cent you earn.</li>
+              <li className="text-lg font-medium">It's green</li>
+              <li className="ml-6">There is no "mining". One transaction takes only ~0.001kWh. That's the equivalent of 1/13,000 the energy it takes to toast a slice of bread. Other currencies consume thousands of times more energy.</li>
+              <li className="text-lg font-medium">It'll get even better</li>
+              <li className="ml-6">The protocol is incredibly lightweight and scales with hardware, it only gets faster with time.</li>
+              <li className="text-lg font-medium">It's final.</li>
+              <li className="ml-6">Payments are finalized in seconds with no rollbacks, giving you financial confidence.</li>
+            </ul>
+          </div>
+        }
+
       </div>
+
       <Footer />
     </div>
   );
