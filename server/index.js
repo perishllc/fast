@@ -248,21 +248,21 @@ async function startServer() {
 
   const WS_URL = "ws://98.35.209.116:7078";
 
-  new_websocket(WS_URL, (socket) => {
-    // onopen
-    let params = {
-      action: "subscribe",
-      topic: "confirmation",
-      ack: true
-    };
-    socket.send(JSON.stringify(params));
-  }, (response) => {
-    // onmessage
-    let data = JSON.parse(response.data);
-    if (data.topic != "confirmation") return;	// discard ack
-    let message = data.message;
-    message_handler(message);
-  });
+  // new_websocket(WS_URL, (socket) => {
+  //   // onopen
+  //   let params = {
+  //     action: "subscribe",
+  //     topic: "confirmation",
+  //     ack: true
+  //   };
+  //   socket.send(JSON.stringify(params));
+  // }, (response) => {
+  //   // onmessage
+  //   let data = JSON.parse(response.data);
+  //   if (data.topic != "confirmation") return;	// discard ack
+  //   let message = data.message;
+  //   message_handler(message);
+  // });
 
 
   // post request

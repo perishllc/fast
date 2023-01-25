@@ -51,7 +51,7 @@ function Page() {
 
         {/* How fast is nano? */}
         <div className="flex flex-col items-center justify-center py-2 text-center">
-          <div className="text-6xl font-bold">
+          <div className="text-3xl lg:text-6xl font-bold">
             Just how <i>fast</i> is a nano transaction?
           </div>
         </div>
@@ -61,38 +61,19 @@ function Page() {
         </div>
 
         {
-          (count > 0 && !pending) && <div className="flex flex-col items-center justify-center py-2">
-            <div className="text-6xl font-bold">
-              That fast!
+          (count > 0 && !pending) &&
+          <div className="flex flex-col items-center justify-center py-2">
+            <div className="text-3xl lg:text-6xl font-bold">
+              THAT fast!
             </div>
-            {/* <div className="text-2xl font-bold">
-              in addition:
-            </div>
-            <ul className="list-disc list-inside bg-green-500 px-3 py-3 rounded-lg">
-              <li>It's green!</li>
-              <li>0 fees!</li>
-              <li>It's secure!</li>
-            </ul> */}
-            {/* <div className="bg-green-500 p-4 mt-8">
-              <h2 className="text-2xl font-medium">In addition:</h2>
-              <ul className="list-none">
-                <li className="text-lg mb-2">No Fees. Ever.</li>
-                <li className="text-base mb-2 ml-4">Send $.01 or $1,000,000 worldwide without paying a cent in transaction fees. Keep every cent you earn.</li>
-                <li className="text-lg mb-2">It's green</li>
-                <li className="text-base mb-2 ml-4">There is no "mining". One transaction takes only ~0.001kWh. That's the equivalent of 1/13,000 the energy it takes to toast a slice of bread. Other currencies consume thousands of times more energy.</li>
-                <li className="text-lg mb-2">It'll get even better</li>
-                <li className="text-base mb-2 ml-4">The protocol is incredibly lightweight and scales with hardware, it only gets faster with time.</li>
-                <li className="text-lg mb-2">It's final.</li>
-                <li className="text-base mb-2  ml-4">Payments are finalized in seconds with no rollbacks, giving you financial confidence.</li>
-              </ul>
-            </div> */}
           </div>
         }
 
-        {(pending) && <div className="h-25"></div>}
+        {(pending) && <div className="lg:h-25 h-19"></div>}
 
         {(count > 0) &&
-          <div className="bg-green-500 p-4 mt-8">
+          // <div className="dark:bg-green-800 bg-green-200 w-full flex justify-center">
+          <div className="dark:bg-green-800 bg-green-200 p-4 mt-8 px-8 mx-8 max-w-200 rounded-lg">
             <h2 className="text-4xl font-medium mb-4">In addition:</h2>
             <ul className="list-none space-y-3">
               <li className="text-lg font-medium">No Fees. Ever.</li>
@@ -105,6 +86,7 @@ function Page() {
               <li className="ml-6">Payments are finalized in seconds with no rollbacks, giving you financial confidence.</li>
             </ul>
           </div>
+          // </div>
         }
 
       </div>
